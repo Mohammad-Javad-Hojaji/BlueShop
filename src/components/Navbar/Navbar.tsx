@@ -3,38 +3,47 @@ import BlueShop from "./../../assets/images/BlueShop.png"
 import user from "./../../assets/images/user.png"
 import Container from "../Container/Container"
 import cart from "./../../assets/images/cart.png"
+import home from "./../../assets/images/home.png"
+import category from "./../../assets/images/category.png"
+import offer from "./../../assets/images/offer.png"
+import call from "./../../assets/images/call.png"
+
 export default function Navbar() {
     return (
         <div className="shadow shadow-gray-400  h-16 ">
             <Container>
                 <div className="flex items-center justify-between h-full w-full">
-                    <div className="flex items-center" >
+                    <div className="flex items-center">
                         <div className="flex">
                             <img className="h-8" src={BlueShop} alt="BlueShop" />
                             <p className="text-xl text-gray-700 font-bold">
                                 فروشگاه
                             </p>
                         </div>
-                        <div>
-                            <ul className="flex gap-3.5 pr-4 align-text-bottom">
+                        <div className="sm:relative sm:border-none border-t border-gray-400  h-1/12  fixed top-11/12 right-0 flex w-full">
+                            <ul className="flex  sm:mx-10 mx-4  sm:gap-3  justify-between items-center  align-text-bottom w-full">
                                 <li >
-                                    <Link to="/">
-                                        خانه
+                                    <Link to="/" className="flex flex-col-reverse">
+                                        <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >خانه</p>
+                                        <img src={home} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/">
-                                        دسته بندی ها
+                                    <Link to="/" className="flex flex-col-reverse">
+                                        <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >دسته بندی ها</p>
+                                        <img src={category} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/">
-                                        پیشنهادات ویژه
+                                    <Link to="/" className="flex flex-col-reverse">
+                                        <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >پیشنهادات ویژه</p>
+                                        <img src={offer} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/">
-                                        تماس با ما
+                                    <Link to="/" className="flex flex-col-reverse">
+                                        <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" > تماس با ما </p>
+                                        <img src={call} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                             </ul>
