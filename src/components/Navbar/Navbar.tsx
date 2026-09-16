@@ -10,7 +10,7 @@ import call from "./../../assets/images/call.png"
 
 export default function Navbar() {
     return (
-        <div className="shadow shadow-gray-400  h-16 ">
+        <div className="shadow shadow-gray-400  h-16 fixed right-0 top-0 z-10 bg-white w-full">
             <Container>
                 <div className="flex items-center justify-between h-full w-full">
                     <div className="flex items-center">
