@@ -1,5 +1,5 @@
 interface Container{
-    children:React.ReactNode
+    children?:React.ReactNode
 }
 export default function Container({children}:Container) {
     return (

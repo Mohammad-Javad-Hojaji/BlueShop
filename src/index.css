@@ -70,3 +70,6 @@ h2 {
 p {
   margin: 0;
 }
+.t-2{
+  transition:all 0.5s;
+}

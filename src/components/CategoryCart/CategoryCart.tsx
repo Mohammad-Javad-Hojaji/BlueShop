@@ -1,0 +1,17 @@
+import { Link } from "react-router-dom";
+import type { Category } from "../../type/type";
+
+export default function CategoryCart({name,id,image,bg}:Category) {
+    return (
+        <div className={`w-4/9  lg:w-1/5 bg py-10 rounded-2xl `} style={{backgroundColor:bg}}>
+            <Link to={`/category/${id}`}>
+                <div className="flex flex-col  justify-center items-center">
+                    <img src={image} alt="" />
+                    <h3 className="font-bold">
+                        {name}
+                    </h3>
+                </div>
+            </Link>
+        </div>
+    )
+}

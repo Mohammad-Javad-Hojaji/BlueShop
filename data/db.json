@@ -1,0 +1,28 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "زیبایی و سلامت",
+            "image": "https://uploadkon.ir/uploads/f31e16_26health.png",
+            "bg": "#ffe4f3"
+        },
+        {
+            "id": 2,
+            "name": "پوشاک",
+            "image": "https://uploadkon.ir/uploads/f56316_26icons8-womens-shirt-96.png",
+            "bg": "#ebe8fa"
+        },
+        {
+            "id": 3,
+            "name": "لوازم خانگی",
+            "image": "https://uploadkon.ir/uploads/ad2016_26icons8-tumble-dryer-100.png",
+            "bg": "#d9e8e0"
+        },
+        {
+            "id": 4,
+            "name": "لوازم الکترونیکی",
+            "image": "https://uploadkon.ir/uploads/aaaa16_26icons8-laptop-96.png",
+            "bg": "#e8dfd4"
+        }
+    ]
+}

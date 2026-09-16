@@ -14,34 +14,36 @@ export default function Navbar() {
             <Container>
                 <div className="flex items-center justify-between h-full w-full">
                     <div className="flex items-center">
-                        <div className="flex">
-                            <img className="h-8" src={BlueShop} alt="BlueShop" />
-                            <p className="text-xl text-gray-700 font-bold">
-                                فروشگاه
-                            </p>
-                        </div>
+                        <Link to="/">
+                            <div className="flex">
+                                <img className="h-8" src={BlueShop} alt="BlueShop" />
+                                <p className="text-xl text-gray-700 font-bold">
+                                    فروشگاه
+                                </p>
+                            </div>
+                        </Link>
                         <div className="sm:relative sm:border-none border-t border-gray-400  h-1/12  fixed top-11/12 right-0 flex w-full">
-                            <ul className="flex  sm:mx-10 mx-4  sm:gap-3  justify-between items-center  align-text-bottom w-full">
+                            <ul className="bg-white flex  sm:mx-10 mx-4  sm:gap-3  justify-between items-center  align-text-bottom w-full">
                                 <li >
-                                    <Link to="/" className="flex flex-col-reverse">
+                                    <Link to="/" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
                                         <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >خانه</p>
                                         <img src={home} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex flex-col-reverse">
+                                    <Link to="/" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
                                         <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >دسته بندی ها</p>
                                         <img src={category} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex flex-col-reverse">
+                                    <Link to="/" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
                                         <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >پیشنهادات ویژه</p>
                                         <img src={offer} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex flex-col-reverse">
+                                    <Link to="/" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
                                         <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" > تماس با ما </p>
                                         <img src={call} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
