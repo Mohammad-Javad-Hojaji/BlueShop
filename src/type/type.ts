@@ -17,3 +17,16 @@ export interface OfferProduct {
   categoryid: number
   description: string
 }
+
+export type Products = Product[]
+
+export interface Product {
+  id: number
+  name: string
+  price: string
+  score: number
+  image: string
+  categoryid: number
+  description: string
+  page: number
+}

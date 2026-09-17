@@ -15,3 +15,9 @@ export async function getOfferProducts(){
 
     return data
 }
+
+export async function getSingleProduct(id:string){
+    const {data}=await client.get(`/products/${id}`)
+
+    return data
+}

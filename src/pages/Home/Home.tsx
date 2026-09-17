@@ -38,12 +38,12 @@ export default function Home() {
                 </Container>
             </div>
 
-            <div className="pt-5">
+            <div className="pt-10">
                 <Container>
-                    <h2>
+                    <h2 className="text-gray-600!">
                         محصولات پر فروش
                     </h2>
-                    <div className="flex lg:flex-nowrap flex-wrap justify-between gap-3 pt-3">
+                    <div className="flex lg:flex-nowrap flex-wrap justify-between gap-3 pt-5">
                         {
                             offerProducts.map(item=>(
                                 <ProductCart {...item} key={item.id} />
