@@ -18,7 +18,7 @@ export default function Product() {
             <Container>
                 <div className="grid md:grid-cols-11 grid-cols-1 p-5 shadow-xl rounded-xl">
                     <div className=" col-span-5">
-                        <h1 className="text-3xl!">
+                        <h1 className="text-2xl!">
                             {
                                 product.name
                             }

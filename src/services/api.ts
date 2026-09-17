@@ -10,6 +10,17 @@ export async function getCategory(){
 
     return data
 }
+export async function getSingleCategory(id:string){
+    const {data}=await client.get(`/categories/${id}`)
+
+    return data
+}
+export async function getItemCategory(page:number,id:string|number){
+    const {data}=await client.get(`/products?page=${page}&categoryid=${id}`)
+
+    return data
+}
+
 export async function getOfferProducts(){
     const {data}=await client.get("/offerProduct")
 

@@ -16,6 +16,7 @@ export interface OfferProduct {
   image: string
   categoryid: number
   description: string
+  page?: number
 }
 
 export type Products = Product[]
@@ -30,3 +31,4 @@ export interface Product {
   description: string
   page: number
 }
+
