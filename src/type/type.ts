@@ -5,7 +5,7 @@ export interface Category {
   bg: string,
   pages:number
 }
-export type Categorys = Category[]
+export type Categories = Category[]
 
 export type OfferProducts = OfferProduct[]
 
@@ -17,7 +17,8 @@ export interface OfferProduct {
   image: string
   categoryid: number
   description: string
-  page?: number
+  page: number
+  productPage:number
 }
 
 export type Products = Product[]
@@ -31,5 +32,6 @@ export interface Product {
   categoryid: number
   description: string
   page: number
+  productPage:number
 }
 

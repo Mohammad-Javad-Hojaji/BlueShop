@@ -3,11 +3,11 @@ import banner from "./../../assets/images/banner.png"
 import Container from "../../components/Container/Container"
 import { getCategory, getOfferProducts } from "../../services/api"
 import { useEffect, useState } from "react"
-import type { Categorys, OfferProducts } from "../../type/type"
+import type { Categories, OfferProducts } from "../../type/type"
 import CategoryCart from "../../components/CategoryCart/CategoryCart"
 import ProductCart from "../../components/ProductCart/ProductCart"
 export default function Home() {
-    const [category, setCategory] = useState<Categorys>([])
+    const [category, setCategory] = useState<Categories>([])
     const [offerProducts,setOfferProducts]=useState<OfferProducts>([])
     useEffect(() => {
         getCategory().then(data => {

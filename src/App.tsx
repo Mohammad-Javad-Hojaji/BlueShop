@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home"
 import Product from "./pages/Product/Product"
 import Category from "./pages/Category/Category"
 import Categories from "./pages/Categories/Categories"
+import Products from "./pages/Products/Products"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route element={<Product />} path="/products/:id" />
         <Route element={<Category />} path="/category/:id" />
         <Route element={<Categories />} path="/categories" />
+        <Route element={<Products />} path="/products" />
       </Routes>
     </Layout>
   )

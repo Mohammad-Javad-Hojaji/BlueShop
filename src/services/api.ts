@@ -20,6 +20,16 @@ export async function getItemCategory(page:number,id:string|number){
 
     return data
 }
+export async function getItemProducts(page:number){
+    const {data}=await client.get(`/products?productPage=${page}`)
+
+    return data
+}
+export async function getPagesProducts(){
+    const {data}=await client.get(`/productPages`)
+
+    return data
+}
 
 export async function getOfferProducts(){
     const {data}=await client.get("/offerProduct")

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import CategoryCart from "../../components/CategoryCart/CategoryCart";
 import Container from "../../components/Container/Container";
-import type { Categorys } from "../../type/type";
+import type { Categories } from "../../type/type";
 import { getCategory } from "../../services/api";
 import CategoryFull from "../../components/CategoryFull/CategoryFull";
 
 export default function Categories() {
-    const [categories, setCategories] = useState<Categorys>([])
+    const [categories, setCategories] = useState<Categories>([])
     useEffect(() => {
         getCategory().then((data) => {
             setCategories(data)

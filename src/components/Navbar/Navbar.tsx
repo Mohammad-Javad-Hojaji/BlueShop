@@ -37,8 +37,8 @@ export default function Navbar() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
-                                        <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >پیشنهادات ویژه</p>
+                                    <Link to="/products" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
+                                        <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >محصولات</p>
                                         <img src={offer} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
