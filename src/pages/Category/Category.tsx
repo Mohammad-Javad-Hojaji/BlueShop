@@ -22,7 +22,8 @@ export default function Category() {
         getItemCategory(page, params.id as string).then(data => {
             setProducts(data)
         })
-    },[page])
+    }, [page,category])
+
     return (
         <div className="pt-18 ">
             <Container>
@@ -62,7 +63,7 @@ export default function Category() {
                             )
 
                     }
-                    <span className="p-0! h-9 w-9 mr-4 bg-sky-600 justify-center items-center flex mr-4 ">
+                    <span className="p-0! h-9 w-9  bg-sky-600 justify-center items-center flex mr-4 ">
                         <span className=" text-white">{page}</span>
                     </span>
                     {

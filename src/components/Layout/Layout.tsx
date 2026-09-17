@@ -1,3 +1,4 @@
+import Footer from "../Footer/Footer"
 import Navbar from "../Navbar/Navbar"
 
 interface Layout {
@@ -10,6 +11,7 @@ export default function Layout({ children }: Layout) {
             {
                 children
             }
+            <Footer />
         </>
     )
 }
