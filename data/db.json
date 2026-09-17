@@ -4,25 +4,29 @@
             "id": 1,
             "name": "زیبایی و سلامت",
             "image": "https://uploadkon.ir/uploads/d82f17_26icons8-heart-100-apng.png",
-            "bg": "#ffe4f3"
+            "bg": "#ffe4f3",
+            "pages":2
         },
         {
             "id": 2,
             "name": "پوشاک",
             "image": "https://uploadkon.ir/uploads/676917_26icons8-hanger-64-apng.png",
-            "bg": "#ebe8fa"
+            "bg": "#ebe8fa",
+            "pages":2
         },
         {
             "id": 3,
             "name": "لوازم خانگی",
             "image": "https://uploadkon.ir/uploads/6de717_26icons8-home-48-apng.png",
-            "bg": "#d9e8e0"
+            "bg": "#d9e8e0",
+            "pages":2
         },
         {
             "id": 4,
             "name": "لوازم الکترونیکی",
             "image": "https://uploadkon.ir/uploads/afc417_26icons8-laptop-64-apng.png",
-            "bg": "#e8dfd4"
+            "bg": "#e8dfd4",
+            "pages":2
         }
     ],
     "offerProduct": [

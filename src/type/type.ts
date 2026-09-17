@@ -2,7 +2,8 @@ export interface Category {
   id: number
   name: string
   image: string
-  bg: string
+  bg: string,
+  pages:number
 }
 export type Categorys = Category[]
 
