@@ -5,3 +5,15 @@ export interface Category {
   bg: string
 }
 export type Categorys = Category[]
+
+export type OfferProducts = OfferProduct[]
+
+export interface OfferProduct {
+  id: number
+  name: string
+  price: string
+  score: number
+  image: string
+  categoryid: number
+  description: string
+}

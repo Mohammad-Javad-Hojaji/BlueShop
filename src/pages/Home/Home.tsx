@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom"
 import banner from "./../../assets/images/banner.png"
 import Container from "../../components/Container/Container"
-import { getCategory } from "../../services/api"
+import { getCategory, getOfferProducts } from "../../services/api"
 import { useEffect, useState } from "react"
-import type { Categorys } from "../../type/type"
+import type { Categorys, OfferProducts } from "../../type/type"
 import CategoryCart from "../../components/CategoryCart/CategoryCart"
 import ProductCart from "../../components/ProductCart/ProductCart"
 export default function Home() {
     const [category, setCategory] = useState<Categorys>([])
+    const [offerProducts,setOfferProducts]=useState<OfferProducts>([])
     useEffect(() => {
         getCategory().then(data => {
             setCategory(data)
         })
+        getOfferProducts().then(data=>{
+            setOfferProducts(data)
+        })
+        
     }, [])
     return (
         <div className="pt-16">
@@ -39,7 +44,11 @@ export default function Home() {
                         محصولات پر فروش
                     </h2>
                     <div className="flex lg:flex-nowrap flex-wrap justify-between gap-3 pt-3">
-                        <ProductCart/>
+                        {
+                            offerProducts.map(item=>(
+                                <ProductCart {...item} key={item.id} />
+                            ))
+                        }
                     </div>
                 </Container>
             </div>

@@ -10,3 +10,8 @@ export async function getCategory(){
 
     return data
 }
+export async function getOfferProducts(){
+    const {data}=await client.get("/offerProduct")
+
+    return data
+}
