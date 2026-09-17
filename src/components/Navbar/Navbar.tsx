@@ -31,7 +31,7 @@ export default function Navbar() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
+                                    <Link to="/categories" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
                                         <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >دسته بندی ها</p>
                                         <img src={category} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
