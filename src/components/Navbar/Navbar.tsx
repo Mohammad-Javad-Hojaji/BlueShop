@@ -5,7 +5,7 @@ import Container from "../Container/Container"
 import cart from "./../../assets/images/cart.png"
 import home from "./../../assets/images/home.png"
 import category from "./../../assets/images/category.png"
-import offer from "./../../assets/images/offer.png"
+import Product from "./../../assets/images/product.png"
 import call from "./../../assets/images/call.png"
 
 export default function Navbar() {
@@ -39,7 +39,7 @@ export default function Navbar() {
                                 <li>
                                     <Link to="/products" className="flex flex-col-reverse t-2 hover:border-b hover:border-sky-600">
                                         <p className="text-xs font-bold sm:text-sm sm:font-medium flex-col text-gray-500" >محصولات</p>
-                                        <img src={offer} className="sm:hidden h-3 w-4 mx-auto" />
+                                        <img src={Product} className="sm:hidden h-3 w-4 mx-auto" />
                                     </Link>
                                 </li>
                                 <li>
