@@ -5,6 +5,7 @@ import Product from "./pages/Product/Product"
 import Category from "./pages/Category/Category"
 import Categories from "./pages/Categories/Categories"
 import Products from "./pages/Products/Products"
+import Contact from "./pages/Contact/Contact"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route element={<Category />} path="/category/:id" />
         <Route element={<Categories />} path="/categories" />
         <Route element={<Products />} path="/products" />
+        <Route element={<Contact />} path="/contact" />
       </Routes>
     </Layout>
   )
