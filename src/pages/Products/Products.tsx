@@ -4,22 +4,25 @@ import type { OfferProducts } from "../../type/type";
 import { getItemProducts, getPagesProducts } from "../../services/api";
 import ProductCart from "../../components/ProductCart/ProductCart";
 import Button from "../../components/_UI_/Button/button";
+import Load from "./../../assets/images/Loading.svg"
 
 export default function Products() {
     const [products, setProducts] = useState<OfferProducts>([])
     const [page, setPages] = useState<number>(1)
-    const[totalPage,setTotalPage]=useState<number>(0)
-    function handlePage(page:number){
+    const [totalPage, setTotalPage] = useState<number>(0)
+    const [loading, setLoading] = useState<boolean>(true)
+    function handlePage(page: number) {
         setPages(page)
     }
     useEffect(() => {
         getItemProducts(page).then((data) => {
             setProducts(data)
+            setLoading(false)
         })
-        getPagesProducts().then(data=>{
+        getPagesProducts().then(data => {
             setTotalPage(data)
         })
-    },[page])
+    }, [page])
     return (
         <div className="pt-16">
             <Container>
@@ -27,13 +30,24 @@ export default function Products() {
                     <h1 className="text-2xl! text-gray-800!">
                         تمامی محصولات
                     </h1>
-                    <div className="flex flex-wrap justify-between gap-3 pt-5">
-                        {
-                            products.map((product)=>(
-                                <ProductCart {...product}/>
-                            ))
-                        }
-                    </div>
+                    {
+                        loading ?
+                            (
+                                <div className="flex justify-center items-center h-100">
+                                    <img src={Load} alt="loading" className="w-1/4" />
+                                </div>
+                            ) :
+                            (
+                                <div className="flex flex-wrap justify-between gap-3 pt-5">
+                                    {
+                                        products.map((product) => (
+                                            <ProductCart {...product} />
+                                        ))
+                                    }
+                                </div>
+                            )
+                    }
+
                 </div>
                 <div className="py-10 flex justify-center items-center">
                     {
