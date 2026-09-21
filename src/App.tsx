@@ -6,6 +6,7 @@ import Category from "./pages/Category/Category"
 import Categories from "./pages/Categories/Categories"
 import Products from "./pages/Products/Products"
 import Contact from "./pages/Contact/Contact"
+import NotFound from "./pages/NotFound/NotFound"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route element={<Categories />} path="/categories" />
         <Route element={<Products />} path="/products" />
         <Route element={<Contact />} path="/contact" />
+        <Route element={<NotFound />} path="*"  />
       </Routes>
     </Layout>
   )
