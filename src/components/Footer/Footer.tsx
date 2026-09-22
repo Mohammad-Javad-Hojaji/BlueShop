@@ -57,7 +57,7 @@ export default function Footer() {
                             <ul className="flex flex-col pr-10">
                                 {
                                     categories.map((category) => (
-                                        <Link to={`/category/${category.id}`} className="text-gray-300 py-2">
+                                        <Link key={category.id} to={`/category/${category.id}`} className="text-gray-300 py-2">
                                             {category.name}
                                         </Link>
                                     ))

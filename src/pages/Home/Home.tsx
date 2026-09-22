@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import banner from "./../../assets/images/banner.png"
 import Container from "../../components/Container/Container"
 import { getCategory, getOfferProducts } from "../../services/api"
-import { useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import type { Categories, OfferProducts } from "../../type/type"
 import CategoryCart from "../../components/CategoryCart/CategoryCart"
 import ProductCart from "../../components/ProductCart/ProductCart"
 import Load from "./../../assets/images/Loading.svg"
+
 export default function Home() {
     type Loading = {
         categories: boolean,

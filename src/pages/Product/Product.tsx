@@ -5,8 +5,10 @@ import type { Product } from "../../type/type"
 import Container from "../../components/Container/Container"
 import Button from "../../components/_UI_/Button/button"
 import Load from "./../../assets/images/Loading.svg"
+import { useShoppingCartContext } from "../../context/ShoppingCartItems"
 
 export default function Product() {
+    const { handleIncreaseProductQty, getQtyProduct,handleDecreaseProductQty } = useShoppingCartContext()
     const params = useParams<{ id: string }>()
     const [product, setProduct] = useState<Product>({} as Product)
     const [loading, setLoading] = useState<boolean>(true)
@@ -16,6 +18,7 @@ export default function Product() {
             setLoading(false)
         })
     }, [])
+
     return (
         <div className="pt-16">
             <Container>
@@ -51,9 +54,33 @@ export default function Product() {
                                         {product.description}
                                     </p>
                                     <div className="pt-5 flex justify-center items-center">
-                                        <Button variant="primary" className="rounded-2xl px-4! py-2! cursor-pointer">
-                                            اضافه کردن به سبد خرید
-                                        </Button>
+                                        {
+                                            getQtyProduct(parseInt(params.id as string)) === 0 ?
+                                                (
+                                                    <Button variant="primary" onClick={() => handleIncreaseProductQty(parseInt(params.id as string))} className="rounded-2xl px-4! py-2! cursor-pointer">
+                                                        اضافه کردن به سبد خرید
+                                                    </Button>
+                                                )
+                                                :
+                                                (
+                                                    <div className="flex">
+
+                                                        <Button variant="primary" className="py-2!" onClick={()=>handleIncreaseProductQty(parseInt(params.id as string))}>
+                                                            +
+                                                        </Button>
+                                                        <p className="text-3xl px-8">
+                                                            {
+                                                                getQtyProduct(parseInt(params.id as string))
+                                                            }
+                                                        </p>
+                                                        <Button variant="danger" className="py-2!" onClick={()=>handleDecreaseProductQty(parseInt(params.id as string))}>
+                                                            -
+                                                        </Button>
+                                                    </div>
+
+                                                )
+                                        }
+
                                     </div>
                                 </div>
                                 <div className="col-span-1">

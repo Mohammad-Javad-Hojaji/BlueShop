@@ -52,7 +52,7 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className="flex items-center">
-                        <Link to="">
+                        <Link to="/cart">
                             <img className="h-5" src={cart} alt="" />
                         </Link>
                         <Link to="" className="h-5 pr-3">
