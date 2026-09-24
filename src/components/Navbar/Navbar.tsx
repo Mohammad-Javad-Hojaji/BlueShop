@@ -7,8 +7,10 @@ import home from "./../../assets/images/home.png"
 import category from "./../../assets/images/category.png"
 import Product from "./../../assets/images/product.png"
 import call from "./../../assets/images/call.png"
+import { useShoppingCartContext } from "../../context/ShoppingCartItems"
 
 export default function Navbar() {
+    const {totalQty}=useShoppingCartContext()
     return (
         <div className="shadow shadow-gray-400  h-16 fixed right-0 top-0 z-10 bg-white w-full">
             <Container>
@@ -52,7 +54,10 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className="flex items-center">
-                        <Link to="/cart">
+                        <Link to="/cart" className="relative">
+                            <div className="bg-blue-500 text-white absolute -top-1 -right-8/12 h-5 flex justify-center items-center w-5 text-xs rounded-full">
+                                {totalQty}
+                            </div>
                             <img className="h-5" src={cart} alt="" />
                         </Link>
                         <Link to="" className="h-5 pr-3">

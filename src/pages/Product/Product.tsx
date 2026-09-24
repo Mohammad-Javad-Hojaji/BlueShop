@@ -57,7 +57,7 @@ export default function Product() {
                                         {
                                             getQtyProduct(parseInt(params.id as string)) === 0 ?
                                                 (
-                                                    <Button variant="primary" onClick={() => handleIncreaseProductQty(parseInt(params.id as string))} className="rounded-2xl px-4! py-2! cursor-pointer">
+                                                    <Button variant="primary" onClick={() => handleIncreaseProductQty(parseInt(params.id as string),product.price)} className="rounded-2xl px-4! py-2! cursor-pointer">
                                                         اضافه کردن به سبد خرید
                                                     </Button>
                                                 )
@@ -65,7 +65,7 @@ export default function Product() {
                                                 (
                                                     <div className="flex">
 
-                                                        <Button variant="primary" className="py-2!" onClick={()=>handleIncreaseProductQty(parseInt(params.id as string))}>
+                                                        <Button variant="primary" className="py-2!" onClick={()=>handleIncreaseProductQty(parseInt(params.id as string),product.price)}>
                                                             +
                                                         </Button>
                                                         <p className="text-3xl px-8">

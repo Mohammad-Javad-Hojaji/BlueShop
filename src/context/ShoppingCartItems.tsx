@@ -2,12 +2,16 @@ import React, { createContext, useContext, useState } from "react";
 type CartItem = {
     qty: number
     id: number
+    price: string
 }
 interface ShoppingCartContext {
     cartItems: CartItem[]
-    handleIncreaseProductQty: (id: number) => void
+    handleIncreaseProductQty: (id: number, price: string) => void
     getQtyProduct: (id: number) => number
     handleDecreaseProductQty: (id: number) => void
+    totalQty: number
+    deleteAll: () => void
+    totalPrices:number
 }
 export const ShoppingCartContext = createContext<ShoppingCartContext>({} as ShoppingCartContext)
 export const useShoppingCartContext = () => (
@@ -26,13 +30,13 @@ export function ShoppingCartContextProvider({ children }: { children: React.Reac
         return 0
 
     }
-    function handleIncreaseProductQty(id: number) {
+    function handleIncreaseProductQty(id: number, price: string) {
         setCartItems(current => {
             const seleceted = current.find((cart) => (
                 cart.id == id
             ))
             if (seleceted == null) {
-                return [...current, { id: id, qty: 1 }]
+                return [...current, { id: id, qty: 1, price: price }]
             }
             else {
                 return current.map(item => {
@@ -55,24 +59,34 @@ export function ShoppingCartContextProvider({ children }: { children: React.Reac
                 cart.id == id
             ))
             if (seleceted?.qty == 1) {
-               return current.filter(item=>{
-                return item.id !=id
-               })
+                return current.filter(item => {
+                    return item.id != id
+                })
             }
-            else{
-                return current.map(item=>{
-                    if (item.id ==id) {
-                        return ({...item , qty:item.qty-1 })
+            else {
+                return current.map(item => {
+                    if (item.id == id) {
+                        return ({ ...item, qty: item.qty - 1 })
                     }
-                    else{
-                        return(item)
+                    else {
+                        return (item)
                     }
                 })
             }
         })
     }
+    const totalQty = cartItems.reduce((qty, item) => {
+        return qty + item.qty
+    }, 0)
+    function deleteAll() {
+        setCartItems([])
+    }
+    const totalPrices = cartItems.reduce((prices, item) => {
+        return prices + ( parseInt(item.price.replaceAll(',','')) * item.qty)
+    }, 0)
+
     return (
-        <ShoppingCartContext.Provider value={{ cartItems, handleIncreaseProductQty, getQtyProduct ,handleDecreaseProductQty}}>
+        <ShoppingCartContext.Provider value={{ totalPrices,deleteAll, cartItems, totalQty, handleIncreaseProductQty, getQtyProduct, handleDecreaseProductQty }}>
             {
                 children
             }
