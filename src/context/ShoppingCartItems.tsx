@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 type CartItem = {
     qty: number
     id: number
@@ -19,7 +20,7 @@ export const useShoppingCartContext = () => (
 )
 
 export function ShoppingCartContextProvider({ children }: { children: React.ReactNode }) {
-    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("cartItems", [])
     function getQtyProduct(id: number) {
         const selected = cartItems.find((item) => {
             return item.id == id
@@ -82,6 +83,8 @@ export function ShoppingCartContextProvider({ children }: { children: React.Reac
         setCartItems([])
     }
     const totalPrices = cartItems.reduce((prices, item) => {
+        console.log(item.price);
+        
         return prices + ( parseInt(item.price.replaceAll(',','')) * item.qty)
     }, 0)
 
