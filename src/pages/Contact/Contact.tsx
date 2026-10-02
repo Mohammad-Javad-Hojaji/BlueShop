@@ -6,11 +6,56 @@ import clock from "./../../assets/images/clock.png"
 import address from "./../../assets/images/address.png"
 import send from "./../../assets/images/send.png"
 import Button from "../../components/_UI_/Button/button";
+import React, { useState } from "react";
+import Alerm from "../../components/Alerm/Alerm";
 
 export default function Contact() {
+    type Data = {
+        name: string,
+        email: string,
+        title: string,
+        text: string
+    }
+    const [data, useData] = useState<Data>({ name: '', email: '', title: '', text: '' })
+    const [trueFields, setTrueFields] = useState<boolean>(true)
+    const [showAlerm, setShowAlerm] = useState<boolean>(false)
+    const handleData = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+        useData({ ...data, [e.target.name]: e.target.value })
+    }
+    
+    const handleSend = () => {
+        for (const [key, value] of Object.entries(data)){
+            if (value == "") {
+                setTrueFields(false)
+            }
+        }
+        setShowAlerm(true)
+        setTimeout(() => {
+            setShowAlerm(false)
+            setTrueFields(true)
+        }, 2000);
+    }
     return (
         <div className="pt-18">
             <Container>
+                {
+                    showAlerm ?
+                        (
+                            trueFields ?
+                                (
+                                    <Alerm variant="success" title="پیام شما با موفقیت ارسال شد" />
+                                )
+                                :
+                                (
+                                    <Alerm variant="danger" title="فرم شما نیاز به اصلاح دارد" />
+                                )
+                        ) :
+                        (
+                            <>
+
+                            </>
+                        )
+                }
                 <div >
                     <img className="rounded-2xl" src={contactImage} alt="ContactUs" />
                 </div>
@@ -82,26 +127,39 @@ export default function Contact() {
                         <div className="pt-4">
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="user">نام و نام خانوادگی</label>
-                                <input className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="text" name="user" id="user" placeholder="نام شما (برای مثال مهدی)" />
+                                <input onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="text" name="name" id="user" placeholder="نام شما (برای مثال مهدی)" />
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="email"> ایمیل  </label>
-                                <input className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="email" name="email" id="email" placeholder="ایمیل شما (برای مثال mahdi@gmail.com)" />
+                                <input onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="email" name="email" id="email" placeholder="ایمیل شما (برای مثال mahdi@gmail.com)" />
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="title"> موضوع پیام  </label>
-                                <input className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="text" name="title" id="title" placeholder="موضوع شما (برای مثال مشکل در فرایند خرید)" />
+                                <input onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="text" name="title" id="title" placeholder="موضوع شما (برای مثال مشکل در فرایند خرید)" />
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="text">  پیام شما  </label>
-                                <textarea className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" name="text" id="text" placeholder="پیام خود را جزئیات بیشتری بیان کنید ">
+                                <textarea onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" name="text" id="text" placeholder="پیام خود را جزئیات بیشتری بیان کنید ">
                                 </textarea>
                             </div>
                             <div className="flex justify-center">
-                                <Button className="flex mt-10 w-4/5 justify-center items-center rounded-2xl py-2! cursor-pointer" variant="primary">
-                                    <img className="h-8" src={send} alt="ContactUs" />
-                                    ارسال پیام
-                                </Button>
+                                {
+                                    showAlerm ?
+                                        (
+                                            <Button className="flex mt-10 w-4/5 justify-center items-center rounded-2xl py-2! cursor-not-allowed" variant="secondary">
+                                                <img className="h-8" src={send} alt="ContactUs" />
+                                                ارسال پیام
+                                            </Button>
+                                        )
+                                        :
+                                        (
+                                            <Button onClick={handleSend} className="flex mt-10 w-4/5 justify-center items-center rounded-2xl py-2! cursor-pointer" variant="primary">
+                                                <img className="h-8" src={send} alt="ContactUs" />
+                                                ارسال پیام
+                                            </Button>
+                                        )
+                                }
+
                             </div>
 
 

@@ -1,0 +1,16 @@
+.anim{
+    width: 100%;
+    animation: animation 1s ease-in 0.5s both;
+    background-color: white;
+    height: 5px;
+    position: absolute;
+    top: 90%;
+}
+@keyframes animation {
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0%;
+    }
+}
