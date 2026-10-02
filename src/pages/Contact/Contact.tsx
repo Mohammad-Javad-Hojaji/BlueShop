@@ -10,23 +10,77 @@ import React, { useState } from "react";
 import Alerm from "../../components/Alerm/Alerm";
 
 export default function Contact() {
+    const FieldsLabel = {
+        name: 'نام و نام خانوادگی',
+        email: 'ایمیل',
+        title: 'موضوع پیام',
+        text: 'پیام'
+    }
     type Data = {
         name: string,
         email: string,
         title: string,
         text: string
     }
-    const [data, useData] = useState<Data>({ name: '', email: '', title: '', text: '' })
+    const [data, setData] = useState<Data>({ name: '', email: '', title: '', text: '' })
+    const [errorMessages, setErrorMessages] = useState<Data>({ name: '', email: '', title: '', text: '' })
     const [trueFields, setTrueFields] = useState<boolean>(true)
     const [showAlerm, setShowAlerm] = useState<boolean>(false)
     const handleData = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-        useData({ ...data, [e.target.name]: e.target.value })
+        setData({ ...data, [e.target.name]: e.target.value })
+        if (e.target.value.trim() !== "") {
+            setErrorMessages((preview) => (
+                { ...preview, [e.target.name]: '' }
+            ))
+        }
+        else {
+            setErrorMessages((preview) => (
+                { ...preview, [e.target.name]: 'را وارد کنید' }
+            ))
+        }
+
+        if (e.target.name == "email") {
+            if (e.target.value.endsWith("@yahoo.com") || e.target.value.endsWith("@gmail.com")) {
+
+                setErrorMessages((preview) => (
+                    { ...preview, email: "" }
+                ))
+            }
+            else if (e.target.value.trim() == "") {
+                setErrorMessages((preview) => (
+                    { ...preview, email: 'را وارد کنید' }
+                ))
+            }
+            else {
+                setErrorMessages((preview) => (
+                    { ...preview, email: 'شما نادرست است' }
+                ))
+            }
+        }
+        if (e.target.name == "text") {
+            if (e.target.value.trim() !== "") {
+                if (e.target.value.length < 12) {
+                    setErrorMessages((preview) => (
+                        { ...preview, [e.target.name]: "شما نباید کمتر از  12 کاراکتر باشد" }
+                    ))
+                }
+            }
+        }
     }
-    
+
     const handleSend = () => {
-        for (const [key, value] of Object.entries(data)){
-            if (value == "") {
+        if (data.text.length < 12) {
+            setTrueFields(false)
+            setErrorMessages((perview) => ({ ...perview, text: "شما نباید کمتر از  12 کاراکتر باشد" }))
+        }
+        if (!(data.email.endsWith("@yahoo.com") || data.email.endsWith("@gmail.com"))) {
+            setTrueFields(false)
+            setErrorMessages((perview) => ({ ...perview, email: "نادرست است" }))
+        }
+        for (const [key, value] of Object.entries(data)) {
+            if (value.trim() == "") {
                 setTrueFields(false)
+                setErrorMessages((perview) => ({ ...perview, [key]: "را وارد کنید" }))
             }
         }
         setShowAlerm(true)
@@ -128,19 +182,60 @@ export default function Contact() {
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="user">نام و نام خانوادگی</label>
                                 <input onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="text" name="name" id="user" placeholder="نام شما (برای مثال مهدی)" />
+                                {
+                                    errorMessages.name ?
+                                        (
+                                            <p className="text-red-500 text-sm pt-2">{FieldsLabel.name} {errorMessages.name} </p>
+                                        )
+                                        :
+                                        (
+                                            <p></p>
+                                        )
+                                }
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="email"> ایمیل  </label>
                                 <input onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="email" name="email" id="email" placeholder="ایمیل شما (برای مثال mahdi@gmail.com)" />
+                                {
+                                    errorMessages.email ?
+                                        (
+                                            <p className="text-red-500 text-sm pt-2">{FieldsLabel.email} {errorMessages.email} </p>
+                                        )
+                                        :
+                                        (
+                                            <p></p>
+                                        )
+                                }
+
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="title"> موضوع پیام  </label>
                                 <input onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" type="text" name="title" id="title" placeholder="موضوع شما (برای مثال مشکل در فرایند خرید)" />
+                                {
+                                    errorMessages.title ?
+                                        (
+                                            <p className="text-red-500 text-sm pt-2">{FieldsLabel.title} {errorMessages.title} </p>
+                                        )
+                                        :
+                                        (
+                                            <p></p>
+                                        )
+                                }
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label htmlFor="text">  پیام شما  </label>
                                 <textarea onChange={handleData} className="md:text-sm text-xs border-gray-300 border outline-none p-2 rounded mt-2" name="text" id="text" placeholder="پیام خود را جزئیات بیشتری بیان کنید ">
                                 </textarea>
+                                {
+                                    errorMessages.text ?
+                                        (
+                                            <p className="text-red-500 text-sm pt-2">{FieldsLabel.text} {errorMessages.text} </p>
+                                        )
+                                        :
+                                        (
+                                            <p></p>
+                                        )
+                                }
                             </div>
                             <div className="flex justify-center">
                                 {
