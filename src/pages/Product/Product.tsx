@@ -6,6 +6,7 @@ import Container from "../../components/Container/Container"
 import Button from "../../components/_UI_/Button/button"
 import Load from "./../../assets/images/Loading.svg"
 import { useShoppingCartContext } from "../../context/ShoppingCartItems"
+import star from "./../../assets/images/star.apng.png"
 
 export default function Product() {
     const { handleIncreaseProductQty, getQtyProduct,handleDecreaseProductQty } = useShoppingCartContext()
@@ -42,7 +43,7 @@ export default function Product() {
                                         <span className="text-sky-800 pr-5">
                                             {product.score}
                                         </span>
-                                        <img src="https://uploadkon.ir/uploads/fe8e17_26icons8-star-48.png" className="h-5 pr-2" alt="" />
+                                        <img src={star} className="h-5 pr-2" alt="" />
                                     </div>
 
                                     <p className="text-blue-700 text-end">
@@ -87,7 +88,7 @@ export default function Product() {
 
                                 </div>
                                 <div style={{ backgroundColor: "#e0e8f2" }} className="p-10 col-span-5 mt-10 md:m-0">
-                                    <img src={product.image} alt="Product" />
+                                    <img src={`/${product.image}`} alt="Product" />
                                 </div>
                             </div>
                         )

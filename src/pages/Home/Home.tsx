@@ -34,7 +34,7 @@ export default function Home() {
         <div className="pt-16">
             <Container>
                 <Link to="/products" >
-                    <img src={banner} alt="Banner Site" className="rounded-2xl" />
+                    <img src={banner} alt="Banner Site" className="rounded-2xl w-full" />
                 </Link>
 
                 <div className="pt-5">

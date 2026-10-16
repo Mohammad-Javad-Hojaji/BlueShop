@@ -111,7 +111,7 @@ export default function Contact() {
                         )
                 }
                 <div >
-                    <img className="rounded-2xl" src={contactImage} alt="ContactUs" />
+                    <img className="rounded-2xl w-full" src={contactImage} alt="ContactUs" />
                 </div>
                 <div className="grid lg:grid-cols-2 grid-cols-1 ">
                     <div className="grid grid-cols-11 justify-stretch shadow p-3 shadow-gray-300 rounded-2xl mt-10 ">
