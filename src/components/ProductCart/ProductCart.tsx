@@ -3,8 +3,6 @@ import type { OfferProduct } from "../../type/type";
 import star from "./../../assets/images/star.apng.png"
 
 export default function ProductCart({id,image,name,price,score}:OfferProduct) {
-    console.log(image);
-    
     return (
         <div className={`w-4/9  lg:w-1/5 py-3 border-gray-300 border rounded-2xl relative`}>
             <div className="flex flex-col  justify-center items-center ">

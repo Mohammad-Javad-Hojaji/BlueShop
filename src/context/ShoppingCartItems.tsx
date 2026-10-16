@@ -83,7 +83,6 @@ export function ShoppingCartContextProvider({ children }: { children: React.Reac
         setCartItems([])
     }
     const totalPrices = cartItems.reduce((prices, item) => {
-        console.log(item.price);
         
         return prices + ( parseInt(item.price.replaceAll(',','')) * item.qty)
     }, 0)

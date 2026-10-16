@@ -60,7 +60,7 @@ export default function Navbar() {
                             </div>
                             <img className="h-5" src={cart} alt="" />
                         </Link>
-                        <Link to="" className="h-5 pr-3">
+                        <Link to="/login" className="h-5 pr-3">
                             <img src={user} alt="" />
                         </Link>
                     </div>

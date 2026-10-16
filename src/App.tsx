@@ -9,6 +9,7 @@ import Contact from "./pages/Contact/Contact"
 import NotFound from "./pages/NotFound/NotFound"
 import { ShoppingCartContextProvider } from "./context/ShoppingCartItems"
 import Cart from "./pages/Cart/Cart"
+import Login from "./pages/Login/Login"
 
 
 
@@ -18,6 +19,7 @@ function App() {
     <ShoppingCartContextProvider>
       <Layout>
         <Routes>
+          <Route element={<Login />} path="/login" />
           <Route element={<Home />} path="/" />
           <Route element={<Product />} path="/products/:id" />
           <Route element={<Category />} path="/category/:id" />
