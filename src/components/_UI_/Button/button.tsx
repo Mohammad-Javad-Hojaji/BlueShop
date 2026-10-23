@@ -1,5 +1,5 @@
 import type React from "react"
-type Variant = "primary" | "secondary" | "danger" | "success" | "warning" | "light" | "info"
+type Variant = "primary" | "secondary" | "danger" | "success" | "warning" | "light" | "info"|"null"
 type Button = React.ComponentProps<"button"> & {
     children: React.ReactNode
     variant?: Variant
@@ -36,7 +36,7 @@ export function checkVariant(Variant: Variant) {
     if (Variant == "light") {
         return { backgroundColor: "#ffffff", color: "#111" }
     }
-    else {
-        return { backgroundColor: "#242345", color: "#fff" }
+    else{
+        return {}
     }
 }

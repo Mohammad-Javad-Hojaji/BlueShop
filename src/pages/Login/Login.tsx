@@ -2,7 +2,9 @@ import { useRef, useState } from "react"
 import Button from "../../components/_UI_/Button/button"
 import icon from "./../../assets/images/BlueShop.png"
 import Alerm from "../../components/Alerm/Alerm"
+import { useAccountShop } from "../../context/AccountShop"
 export default function Login() {
+    const {setIsLogin,setUsername}=useAccountShop()
     const usernameRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
     interface Data {
@@ -14,10 +16,9 @@ export default function Login() {
     const [trueFields, setTrueFields] = useState<boolean>(true)
     const [errorMessages, setErrorMessages] = useState<Data>({ username: "", password: "" })
     const [data, setData] = useState<Data>({ username: "", password: "" })
-    console.log(data);
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === " ") {
-            e.preventDefault() // جلوی تایپ فاصله رو می‌گیره
+            e.preventDefault() 
         }
     }
     function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -66,7 +67,8 @@ export default function Login() {
                         setTrueFields(false)
                     }
                     else{
-                        // here
+                        setIsLogin(true)
+                        setUsername(data.username)
                     }
                 }
             }
@@ -77,13 +79,14 @@ export default function Login() {
             setTrueFields(true)
         }, 2000);
     }
+    
     return (
         <>
             {
                 alarmShow ? (trueFields ? <Alerm variant="success" title="شما با موفقیت وارد شدید" /> : <Alerm variant="danger" title="فرم شما نیاز به اصلاح دارد" />) : (<> </>)
             }
             <div className="h-full w-full flex items-center justify-center md:px-4">
-                <div className="h-100 md:w-200  w-full flex  shadow shadow-gray-400 md:rounded-2xl md:p-6 p-2">
+                <div className=" md:w-200  w-full flex  shadow shadow-gray-400 md:rounded-2xl md:p-6 p-2">
                     <div className="w-full">
                         <div className="flex flex-row-reverse pt-5 ">
                             <img src={icon} className="h-8" alt="BlueShop!" />

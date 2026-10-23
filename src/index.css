@@ -77,3 +77,21 @@ p {
 .t-2{
   transition:all 0.5s;
 }
+.myAnimateLocal2{
+  transition: 2s;
+}
+.myAnimateLocal:hover .myAnimateLocal2{
+  display: inline-block !important;
+}
+.navbar-a-profile{
+  transition: 1s;
+}
+.navbar-a-profile:hover{
+  background-color: #e3f0fb;
+}
+.navbar-a-profile2{
+  transition: 1s;
+}
+.navbar-a-profile2:hover{
+  background-color: #f4e2e2;
+}

@@ -8,9 +8,15 @@ import category from "./../../assets/images/category.png"
 import Product from "./../../assets/images/product.png"
 import call from "./../../assets/images/call.png"
 import { useShoppingCartContext } from "../../context/ShoppingCartItems"
+import { useAccountShop } from "../../context/AccountShop"
+import Button from "../_UI_/Button/button"
+import flash from "./../../assets/images/flash_left.png"
+import redflash from "./../../assets/images/red_flash_left.png"
+import exit_icon from "./../../assets/images/exit.png"
 
 export default function Navbar() {
-    const {totalQty}=useShoppingCartContext()
+    const { isLogin, username,setIsLogin,setUsername } = useAccountShop()
+    const { totalQty } = useShoppingCartContext()
     return (
         <div className="shadow shadow-gray-400  h-16 fixed right-0 top-0 z-10 bg-white w-full">
             <Container>
@@ -60,9 +66,68 @@ export default function Navbar() {
                             </div>
                             <img className="h-5" src={cart} alt="" />
                         </Link>
-                        <Link to="/login" className="h-5 pr-3">
-                            <img src={user} alt="" />
-                        </Link>
+                        {
+                            isLogin ?
+                                (
+                                    <div>
+                                        <div className="h-5 pr-3 relative myAnimateLocal">
+                                            <img src={user} alt="" className="cursor-pointer" />
+                                            <div className="absolute top-full -right-73 w-91 h-fit hidden myAnimateLocal2">
+                                                <div className="m-5 h-full bg-white shadow-sky-300 shadow-sm rounded-xl">
+                                                    <div className="flex justify-center pt-4">
+                                                        <div className="flex w-full mx-4 justify-between items-center border-b pb-2 border-gray-300">
+                                                            <div>
+                                                                <p className=" text-gray-800 text-xl">{username}</p>
+                                                                <p className="text-sm">حساب کاربری</p>
+                                                            </div>
+                                                            <div className="h-14 w-14 bg-sky-200 rounded-full flex justify-center items-center">
+                                                                <img src={user} alt="" className=" w-8 h-8" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div className="flex justify-center pt-2 flex-col">
+                                                        <div className="py-2">
+                                                            <a href="/cart" className="cursor-pointer ">
+                                                                <Button variant="null" className=" mx-4 w-72 navbar-a-profile rounded-2xl p-2! cursor-pointer">
+                                                                    <div className="flex justify-between items-center">
+                                                                        <div className="flex">
+                                                                            <img src={cart} alt="cart" className="h-6  w-6 ml-2" />
+                                                                            <p>
+                                                                                سبد خرید
+                                                                            </p>
+                                                                        </div>
+                                                                        <img src={flash} alt="" className="h-4 w-4" />
+                                                                    </div>
+                                                                </Button>
+                                                            </a>
+                                                            <Button onClick={()=>{setIsLogin(false),setUsername(null)}} variant="null" className=" mx-4 w-72 navbar-a-profile2 rounded-2xl p-2! cursor-pointer ">
+                                                                <div className="flex justify-between items-center ">
+                                                                    <div className="flex items-center">
+                                                                        <img src={exit_icon} alt="cart" className="h-8 pt-2  w-6 ml-2" />
+                                                                        <p className="text-red-400">
+                                                                            خروج از حساب
+                                                                        </p>
+                                                                    </div>
+                                                                    <img src={redflash} alt="" className="h-4 w-4 text-red-400 pb-4" />
+                                                                </div>
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) :
+                                (
+                                    <Link to="/login" className="pr-3" >
+                                        <img src={user} alt="" />
+                                    </Link>
+                                )
+                        }
+
                     </div>
                 </div>
 

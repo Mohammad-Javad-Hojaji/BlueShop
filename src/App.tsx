@@ -10,27 +10,37 @@ import NotFound from "./pages/NotFound/NotFound"
 import { ShoppingCartContextProvider } from "./context/ShoppingCartItems"
 import Cart from "./pages/Cart/Cart"
 import Login from "./pages/Login/Login"
+import { AccountShopProvider, useAccountShop } from "./context/AccountShop"
+import LogicLogin from "./components/LogicLogin/LogicLogin"
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 
 
 
 function App() {
+  const { isLogin } = useAccountShop()
+  console.log(isLogin);
 
   return (
-    <ShoppingCartContextProvider>
-      <Layout>
-        <Routes>
+
+    <Layout>
+      <Routes>
+        <Route element={<LogicLogin />} >
           <Route element={<Login />} path="/login" />
-          <Route element={<Home />} path="/" />
-          <Route element={<Product />} path="/products/:id" />
-          <Route element={<Category />} path="/category/:id" />
-          <Route element={<Categories />} path="/categories" />
-          <Route element={<Products />} path="/products" />
-          <Route element={<Contact />} path="/contact" />
-          <Route element={<NotFound />} path="*" />
+        </Route>
+
+        <Route element={<Home />} path="/" />
+        <Route element={<Product />} path="/products/:id" />
+        <Route element={<Category />} path="/category/:id" />
+        <Route element={<Categories />} path="/categories" />
+        <Route element={<Products />} path="/products" />
+        <Route element={<Contact />} path="/contact" />
+        <Route element={<NotFound />} path="*" />
+        <Route element={<PrivateRoute />}>
           <Route element={<Cart />} path="/cart" />
-        </Routes>
-      </Layout>
-    </ShoppingCartContextProvider>
+        </Route>
+      </Routes>
+    </Layout>
+
   )
 }
 
