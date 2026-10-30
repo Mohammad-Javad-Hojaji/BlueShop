@@ -38,6 +38,9 @@ export default function Category() {
             setLoading(current => ({ ...current, products: false }))
         })
     }, [page, params.id])
+    useEffect(()=>{
+        setPage(1)
+    },[params.id])
 
     return (
         <>
