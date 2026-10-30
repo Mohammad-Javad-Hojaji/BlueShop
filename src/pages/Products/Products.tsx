@@ -41,7 +41,7 @@ export default function Products() {
                                 <div className="flex flex-wrap justify-between gap-3 pt-5">
                                     {
                                         products.map((product) => (
-                                            <ProductCart {...product} />
+                                            <ProductCart {...product} key={product.id} />
                                         ))
                                     }
                                 </div>

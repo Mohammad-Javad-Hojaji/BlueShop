@@ -18,8 +18,6 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 
 function App() {
   const { isLogin } = useAccountShop()
-  console.log(isLogin);
-
   return (
 
     <Layout>

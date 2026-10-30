@@ -16,7 +16,7 @@ export default function CategoryFull({id,name}:Category) {
             <div className="flex lg:flex-nowrap flex-wrap justify-around gap-3 pt-5">
                 {
                     products.map((data) => (
-                        <ProductCart {...data} />
+                        <ProductCart {...data} key={data.id} />
                     ))
                 }
             </div>

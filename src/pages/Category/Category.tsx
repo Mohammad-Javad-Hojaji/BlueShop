@@ -7,6 +7,7 @@ import Container from "../../components/Container/Container"
 import ProductCart from "../../components/ProductCart/ProductCart"
 import Button from "../../components/_UI_/Button/button"
 import Load from "../../assets/images/Loading.svg"
+import NotFound from "../NotFound/NotFound"
 export default function Category() {
     type Loading = {
         category: boolean,
@@ -20,6 +21,7 @@ export default function Category() {
         category: true,
         products: true
     })
+    const [handleError, setHandleError] = useState<boolean>(false)
     function handlePage(id: number) {
         setPage(id)
     }
@@ -27,106 +29,120 @@ export default function Category() {
         getSingleCategory(params.id as string).then((data) => {
             setCategory(data)
             setLoading(current => ({ ...current, category: false }))
+        }).catch((e)=>{
+            setHandleError(e.response.status===404);
+            
         })
         getItemCategory(page, params.id as string).then(data => {
             setProducts(data)
             setLoading(current => ({ ...current, products: false }))
         })
-    }, [page,params.id])
+    }, [page, params.id])
 
     return (
-        <div className="pt-18 ">
-            <Container>
+        <>
+            {
+                handleError ?
+                    (
+                        <NotFound />
+                    ) :
+                    (
+                        <div className="pt-18 ">
+                            <Container>
 
-                {
-                    loading.category ?
-                        (
-                            <div className="flex justify-center items-center">
-                                <img src={Load} alt="loading" className="w-1/4" />
-                            </div>
-                        ) :
-                        <div style={{ backgroundColor: category.bg }} className="py-5 rounded-3xl ">
-                            <CategoryCart {...category} />
-                        </div>
-                }
+                                {
+                                    loading.category ?
+                                        (
+                                            <div className="flex justify-center items-center">
+                                                <img src={Load} alt="loading" className="w-1/4" />
+                                            </div>
+                                        ) :
+                                        <div style={{ backgroundColor: category.bg }} className="py-5 rounded-3xl ">
+                                            <CategoryCart {...category} />
+                                        </div>
+                                }
 
 
-                <div>
-                    <h1 className="text-2xl! text-gray-700!">{category.name}</h1>
+                                <div>
+                                    <h1 className="text-2xl! text-gray-700!">{category.name}</h1>
 
-                    {
-                        loading.products ?
-                            (
-                                <div className="flex justify-center items-center">
-                                    <img src={Load} alt="loading" className="w-1/4" />
-                                </div>
-                            ) :
-                            (
-                                <div className="flex lg:flex-nowrap flex-wrap justify-around gap-3 pt-5">
                                     {
-                                        products.map((data) => (
-                                            <ProductCart {...data} />
-                                        ))
+                                        loading.products ?
+                                            (
+                                                <div className="flex justify-center items-center">
+                                                    <img src={Load} alt="loading" className="w-1/4" />
+                                                </div>
+                                            ) :
+                                            (
+                                                <div className="flex lg:flex-nowrap flex-wrap justify-around gap-3 pt-5">
+                                                    {
+                                                        products.map((data) => (
+                                                            <ProductCart {...data} key={data.id} />
+                                                        ))
+                                                    }
+                                                </div>
+                                            )
                                     }
+
+
                                 </div>
-                            )
-                    }
+                                <div className="py-10 flex justify-center items-center">
+                                    {
+                                        page - 1 > 1 ?
+                                            (
+                                                <span className="pr-4">...</span>
+                                            ) :
+                                            (
+                                                null
+                                            )
+                                    }
+                                    {
+                                        page !== 1 ?
+                                            (<Button variant="light" className="p-0! h-9 w-9 mr-4 " onClick={() => {
+                                                handlePage(page - 1)
+                                                setLoading(current => ({ ...current, products: true }))
+                                            }}>
+                                                {page - 1}
+                                            </Button>)
+                                            :
+                                            (
+                                                null
+                                            )
 
+                                    }
+                                    <span className="p-0! h-9 w-9  bg-sky-600 justify-center items-center flex mr-4 ">
+                                        <span className=" text-white">{page}</span>
+                                    </span>
+                                    {
+                                        page !== category.pages ?
+                                            (<Button variant="light" className="p-0! h-9 w-9 mr-4 " onClick={() => {
+                                                handlePage(page + 1)
+                                                setLoading(current => ({ ...current, products: true }))
+                                            }}>
+                                                {page + 1}
+                                            </Button>)
+                                            :
+                                            (
+                                                null
+                                            )
 
-                </div>
-                <div className="py-10 flex justify-center items-center">
-                    {
-                        page - 1 > 1 ?
-                            (
-                                <span className="pr-4">...</span>
-                            ) :
-                            (
-                                null
-                            )
-                    }
-                    {
-                        page !== 1 ?
-                            (<Button variant="light" className="p-0! h-9 w-9 mr-4 " onClick={() => {
-                                handlePage(page - 1)
-                                setLoading(current => ({ ...current, products: true }))
-                            }}>
-                                {page - 1}
-                            </Button>)
-                            :
-                            (
-                                null
-                            )
+                                    }
+                                    {
+                                        page + 1 < category.pages ?
+                                            (
+                                                <span className="pr-4">...</span>
+                                            ) :
+                                            (
+                                                null
+                                            )
+                                    }
 
-                    }
-                    <span className="p-0! h-9 w-9  bg-sky-600 justify-center items-center flex mr-4 ">
-                        <span className=" text-white">{page}</span>
-                    </span>
-                    {
-                        page !== category.pages ?
-                            (<Button variant="light" className="p-0! h-9 w-9 mr-4 " onClick={() => {
-                                handlePage(page + 1)
-                                setLoading(current => ({ ...current, products: true }))
-                            }}>
-                                {page + 1}
-                            </Button>)
-                            :
-                            (
-                                null
-                            )
+                                </div>
+                            </Container>
+                        </div>
+                    )
+            }
+        </>
 
-                    }
-                    {
-                        page + 1 < category.pages ?
-                            (
-                                <span className="pr-4">...</span>
-                            ) :
-                            (
-                                null
-                            )
-                    }
-
-                </div>
-            </Container>
-        </div>
     )
 }
