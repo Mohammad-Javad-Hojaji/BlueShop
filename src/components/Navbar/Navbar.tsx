@@ -16,7 +16,7 @@ import exit_icon from "./../../assets/images/exit.png"
 
 export default function Navbar() {
     const { isLogin, username,setIsLogin,setUsername } = useAccountShop()
-    const { totalQty } = useShoppingCartContext()
+    const { totalQty,deleteAll } = useShoppingCartContext()
     return (
         <div className="shadow shadow-gray-400  h-16 fixed right-0 top-0 z-10 bg-white w-full">
             <Container>
@@ -102,7 +102,7 @@ export default function Navbar() {
                                                                     </div>
                                                                 </Button>
                                                             </a>
-                                                            <Button onClick={()=>{setIsLogin(false),setUsername(null)}} variant="null" className=" mx-4 w-72 navbar-a-profile2 rounded-2xl p-2! cursor-pointer ">
+                                                            <Button onClick={()=>{setIsLogin(false),setUsername(null),deleteAll()}} variant="null" className=" mx-4 w-72 navbar-a-profile2 rounded-2xl p-2! cursor-pointer ">
                                                                 <div className="flex justify-between items-center ">
                                                                     <div className="flex items-center">
                                                                         <img src={exit_icon} alt="cart" className="h-8 pt-2  w-6 ml-2" />

@@ -4,7 +4,7 @@ import icon from "./../../assets/images/BlueShop.png"
 import Alerm from "../../components/Alerm/Alerm"
 import { useAccountShop } from "../../context/AccountShop"
 export default function Login() {
-    const {setIsLogin,setUsername}=useAccountShop()
+    const { setIsLogin, setUsername } = useAccountShop()
     const usernameRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
     interface Data {
@@ -18,7 +18,7 @@ export default function Login() {
     const [data, setData] = useState<Data>({ username: "", password: "" })
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === " ") {
-            e.preventDefault() 
+            e.preventDefault()
         }
     }
     function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -66,7 +66,7 @@ export default function Login() {
                     else if (data.username.trim().length < 3) {
                         setTrueFields(false)
                     }
-                    else{
+                    else {
                         setIsLogin(true)
                         setUsername(data.username)
                     }
@@ -79,7 +79,7 @@ export default function Login() {
             setTrueFields(true)
         }, 2000);
     }
-    
+
     return (
         <>
             {
@@ -130,14 +130,25 @@ export default function Login() {
                                     )
                             }
                         </div>
-                        <Button onClick={handleClickButton} variant="primary" className="py-2! mt-5 cursor-pointer w-full rounded-2xl">
-                            ورود
-                        </Button>
+                        {
+                            alarmShow ?
+                                (
+                                    <Button variant="secondary" className="py-2! mt-5 w-full rounded-2xl cursor-not-allowed">
+                                        ورود
+                                    </Button>
+                                ) :
+                                (
+                                    <Button onClick={handleClickButton} variant="primary" className="py-2! mt-5 cursor-pointer w-full rounded-2xl">
+                                        ورود
+                                    </Button>
+                                )
+                        }
+
                     </div>
 
 
                 </div>
-            </div>
+            </div >
         </>
     )
 }
