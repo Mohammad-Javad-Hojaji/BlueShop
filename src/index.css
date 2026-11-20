@@ -95,3 +95,9 @@ p {
 .navbar-a-profile2:hover{
   background-color: #f4e2e2;
 }
+.slide{
+  transition: 2s;
+}
+.slider-container{
+  touch-action: pan-x;
+}
