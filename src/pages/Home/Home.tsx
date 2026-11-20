@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import banner from "./../../assets/images/banner.png"
 import banner2 from "./../../assets/images/banner2.png"
 import Container from "../../components/Container/Container"
@@ -14,12 +14,47 @@ export default function Home() {
         categories: boolean,
         offers: boolean
     }
+    const navigate = useNavigate()
     const [category, setCategory] = useState<Categories>([])
     const [offerProducts, setOfferProducts] = useState<OfferProducts>([])
     const [loading, setLoading] = useState<Loading>({
         categories: true,
         offers: true
     })
+    const [startX, setStartX] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragDistance, setDragDistance] = useState(0);
+    const handleMouseDown = (e: React.MouseEvent) => {
+        setStartX(e.clientX);
+        setIsDragging(true);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging) return;
+
+        setDragDistance(e.clientX - startX);
+    };
+
+    const handleMouseUp = () => {
+        if (!isDragging) return;
+
+        if (Math.abs(dragDistance) < 10) {
+            navigate("/products");
+        } else if (dragDistance > 80) {
+            setIndexSlider(prev =>
+                prev === 0 ? slider.length - 1 : prev - 1
+            );
+        } else if (dragDistance < -80) {
+            setIndexSlider(prev =>
+                (prev + 1) % slider.length
+            );
+        }
+
+        setIsDragging(false);
+        setDragDistance(0);
+    };
+
+
     useEffect(() => {
         getCategory().then(data => {
             setCategory(data)
@@ -52,13 +87,17 @@ export default function Home() {
     return (
         <div className="pt-16">
 
-            <Link to="/products" className="pb-12" >
+            <div>
                 <div className="relative" >
-                    <div className="slider-container w-full overflow-hidden ">
+                    <div className="slider-container w-full overflow-hidden " onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseUp}>
                         <div className="slide w-full flex " style={{ translate: `${indexSlider * 100}%` }}>
                             {
                                 slider.map((sliderx, index) => (
-                                    <img src={sliderx} alt="banner" className="w-full" key={index} />
+
+                                    <img src={sliderx} draggable="false" alt="banner" className="w-full" key={index} />
                                 ))
                             }
                         </div>
@@ -67,17 +106,17 @@ export default function Home() {
 
 
                     <div className="absolute top-10/12 right-1/2 flex justify-center items-center gap-2">
-                        {slider.map((v,index) => (
-                            <div className={` w-2 h-2 rounded-full ${indexSlider==index?("bg-white"):("bg-gray-400")}`} >
+                        {slider.map((v, index) => (
+                            <div className={` w-2 h-2 rounded-full ${indexSlider == index ? ("bg-white") : ("bg-gray-400")}`} >
 
                             </div>
                         ))}
 
-               
+
                     </div>
 
                 </div>
-            </Link>
+            </div>
             <Container>
                 <div className="pt-5">
                     {

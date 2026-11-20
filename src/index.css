@@ -98,6 +98,11 @@ p {
 .slide{
   transition: 2s;
 }
-.slider-container{
-  touch-action: pan-x;
+.slider-container {
+    cursor: pointer;
+    user-select: none;
+}
+
+.slider-container:active {
+    cursor: grabbing;
 }
